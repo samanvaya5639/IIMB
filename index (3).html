@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samanvaya Singhal — Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── CSS Variables ── */
+    :root {
+      --cream: #f5f0e8;
+      --dark: #1a1a2e;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --muted: #6b6b7b;
+      --card-bg: #ffffff;
+      --accent: #2d5a8e;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ── Navigation Bar ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    nav .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #ccc;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+
+    nav ul li a:hover { color: var(--gold); }
+
+    /* ── Hero Section ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: 'S';
+      position: absolute;
+      bottom: -60px; right: 40px;
+      font-family: 'Playfair Display', serif;
+      font-size: 300px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+    }
+
+    #hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      max-width: 700px;
+    }
+
+    #hero h1 span { color: var(--gold); }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      color: #aaa;
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 480px;
+    }
+
+    .hero-chips {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      padding: 0.8rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* ── Section Common ── */
+    section { padding: 5rem 3rem; }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 2.5rem;
+      line-height: 1.15;
+    }
+
+    /* ── About Section ── */
+    #about {
+      background: #fff;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1100px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-weight: 300;
+      font-size: 1rem;
+    }
+
+    .about-info { display: flex; flex-direction: column; gap: 1rem; }
+
+    .info-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem;
+      background: var(--cream);
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .info-item .info-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      min-width: 80px;
+    }
+
+    .info-item .info-val {
+      font-size: 0.9rem;
+      color: var(--dark);
+      font-weight: 400;
+    }
+
+    /* ── Experience Section ── */
+    #experience { background: var(--cream); }
+
+    .timeline { position: relative; max-width: 900px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .timeline-item {
+      padding-left: 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px; top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--cream);
+    }
+
+    .exp-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .exp-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .exp-date {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      background: rgba(201,168,76,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .exp-role {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .exp-card ul { padding-left: 1.2rem; }
+
+    .exp-card ul li {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.4rem;
+      font-weight: 300;
+    }
+
+    /* ── Skills Section ── */
+    #skills { background: var(--dark); }
+
+    #skills .section-title { color: #fff; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+    }
+
+    .skill-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .skill-card:hover {
+      background: rgba(201,168,76,0.08);
+      transform: translateY(-3px);
+    }
+
+    .skill-card h3 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    .skill-tag {
+      background: rgba(255,255,255,0.07);
+      color: #ccc;
+      padding: 0.25rem 0.7rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    /* ── Education Section ── */
+    #education { background: #fff; }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+    }
+
+    .edu-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 1.8rem;
+      border-top: 4px solid var(--gold);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .edu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .edu-degree {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-school {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .edu-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .edu-year {
+      font-size: 0.78rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .edu-score {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ── Interests Section ── */
+    #interests { background: var(--cream); }
+
+    .interests-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 800px;
+    }
+
+    .interest-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--dark);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .interest-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .interest-pill .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── Contact Section ── */
+    #contact {
+      background: var(--dark);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    #contact .section-label { text-align: center; }
+    #contact .section-title { color: #fff; text-align: center; }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: #ccc;
+      font-size: 0.9rem;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      transition: border-color 0.25s, color 0.25s;
+    }
+
+    .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── Footer ── */
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: #555;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.2s; }
+    .fade-up:nth-child(3) { animation-delay: 0.3s; }
+    .fade-up:nth-child(4) { animation-delay: 0.4s; }
+    .fade-up:nth-child(5) { animation-delay: 0.5s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1rem; }
+      nav ul li a { font-size: 0.75rem; }
+      section { padding: 4rem 1.5rem; }
+      #hero { padding: 7rem 1.5rem 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#hero" class="nav-logo">S.S.</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <p class="hero-tag">Student · Entrepreneur · Investor</p>
+    <h1>Samanvaya<br/><span>Singhal</span></h1>
+    <p class="hero-sub">BBA (DBE) student at IIM Bangalore with hands-on experience in event management, capital markets, hospitality, and business analysis.</p>
+    <div class="hero-chips">
+      <span class="chip">₹5L+ Portfolio Managed</span>
+      <span class="chip">1,400+ Event Attendees</span>
+      <span class="chip">AED 280K Revenue Generated</span>
+    </div>
+    <a href="#experience" class="hero-cta">View My Work</a>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a commerce graduate from Indian High School, Dubai, now pursuing BBA (Digital Business & Entrepreneurship) at IIM Bangalore — one of India's most prestigious management institutions.</p>
+        <p>I've worked across industries — from maritime consulting and equity investing to large-scale event production and hotel management — each experience shaping my perspective on business and strategy.</p>
+        <p>I bring a rare mix of analytical thinking and execution-oriented energy, with a track record of delivering measurable results from early on in my career.</p>
+      </div>
+      <div class="about-info">
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <span class="info-val">samanvaya.singhal@gmail.com</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Phone</span>
+          <span class="info-val">+91 73022 94421</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">College</span>
+          <span class="info-val">IIM Bangalore — BBA (DBE), 2025–2028</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">School</span>
+          <span class="info-val">Indian High School, Dubai, UAE</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">DOB</span>
+          <span class="info-val">3rd September 2007</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <p class="section-label">What I've Done</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item fade-up">
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Hotel ND Manor, Dehradun</span>
+            <span class="exp-date">Nov – Dec 2025</span>
+          </div>
+          <div class="exp-role">Assistant to General Manager</div>
+          <ul>
+            <li>Assisted the General Manager at a soon-to-be IHCL Managed Property in Dehradun.</li>
+            <li>Supported sales initiatives and coordinated group bookings.</li>
+            <li>Launched the property's official website, Instagram, and Facebook pages from scratch.</li>
+            <li>Published the restaurant on a major aggregator platform — generated ₹1,00,000 in revenue within the first 2 weeks with only ₹5,000 in marketing spend.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Event Management — Atelier LLC, Dubai</span>
+            <span class="exp-date">Aug – Sept 2025</span>
+          </div>
+          <div class="exp-role">Partner</div>
+          <ul>
+            <li>Co-executed the company's first large-scale live comedy event with 1,400+ attendees featuring Atul Khatri, Neeti Palta, and Aakash Mehta.</li>
+            <li>Led end-to-end marketing strategy across social media and ticketing platforms.</li>
+            <li>Generated revenue of AED 2,80,000 (~₹67L) and a net profit of AED 50,000 (~₹12L).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Indian Capital Markets</span>
+            <span class="exp-date">Sept 2024 – July 2025</span>
+          </div>
+          <div class="exp-role">Partner (Self-Directed Equity Portfolio)</div>
+          <ul>
+            <li>Managed a self-directed equity portfolio exceeding ₹5,00,000 over 9 months, achieving 6.38% alpha over the benchmark index.</li>
+            <li>Applied fundamental analysis — financial statements, valuation models, sector analysis — alongside technical indicators.</li>
+            <li>Periodically rebalanced to maintain optimal risk-return alignment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Infobahn Consultancy LLC, Dubai</span>
+            <span class="exp-date">July – Aug 2024</span>
+          </div>
+          <div class="exp-role">Intern</div>
+          <ul>
+            <li>Gathered and refined business requirements for a digital ship Audit/Inspection platform.</li>
+            <li>Translated client needs into actionable specifications throughout the project lifecycle.</li>
+            <li>Bridged communication between clients and the development team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-up">
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">SeaSpeed Marine Management LLC, Sharjah</span>
+            <span class="exp-date">July 2023</span>
+          </div>
+          <div class="exp-role">Intern</div>
+          <ul>
+            <li>Supported market research on the offshore shipping industry in Abu Dhabi for the company's regional expansion plan.</li>
+            <li>Built foundational understanding of industry operations, regulations, and client needs.</li>
+            <li>Compiled insights that informed internal planning and market-entry discussions.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <p class="section-label">What I Bring</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Technical</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Excel</span>
+          <span class="skill-tag">Google Workspace</span>
+          <span class="skill-tag">TradingView</span>
+          <span class="skill-tag">Social Media Tools</span>
+          <span class="skill-tag">Event Management</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Soft Skills</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Business Analysis</span>
+          <span class="skill-tag">Requirements Gathering</span>
+          <span class="skill-tag">Cross-functional Teamwork</span>
+          <span class="skill-tag">Leadership</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Marketing & Strategy</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Social Media Strategy</span>
+          <span class="skill-tag">Content Creation</span>
+          <span class="skill-tag">Event Planning</span>
+          <span class="skill-tag">Stakeholder Communication</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Finance</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Equity Analysis</span>
+          <span class="skill-tag">Portfolio Management</span>
+          <span class="skill-tag">Fundamental Analysis</span>
+          <span class="skill-tag">Sector Research</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <p class="section-label">Academic Background</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-degree">BBA — Digital Business & Entrepreneurship</div>
+        <div class="edu-school">IIM Bangalore</div>
+        <div class="edu-meta">
+          <span class="edu-year">2025 – 2028</span>
+          <span class="edu-score">Current</span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Class XII — Commerce (CBSE)</div>
+        <div class="edu-school">Indian High School, Dubai, UAE</div>
+        <div class="edu-meta">
+          <span class="edu-year">2025</span>
+          <span class="edu-score">84.2%</span>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree">Class X (CBSE)</div>
+        <div class="edu-school">Indian High School, Dubai, UAE</div>
+        <div class="edu-meta">
+          <span class="edu-year">2023</span>
+          <span class="edu-score">92.8%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interests -->
+  <section id="interests">
+    <p class="section-label">Beyond Work</p>
+    <h2 class="section-title">Interests</h2>
+    <div class="interests-flex">
+      <div class="interest-pill"><span class="dot"></span>Startups & Entrepreneurship</div>
+      <div class="interest-pill"><span class="dot"></span>Indian Stock Market</div>
+      <div class="interest-pill"><span class="dot"></span>Global Business</div>
+      <div class="interest-pill"><span class="dot"></span>Geopolitics</div>
+      <div class="interest-pill"><span class="dot"></span>Generative AI</div>
+      <div class="interest-pill"><span class="dot"></span>Sudoku</div>
+      <div class="interest-pill"><span class="dot"></span>Cycling</div>
+      <div class="interest-pill"><span class="dot"></span>Podcasts</div>
+      <div class="interest-pill"><span class="dot"></span>Ken Ken</div>
+      <div class="interest-pill"><span class="dot"></span>Reading Books & Articles</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-links">
+      <a href="mailto:samanvaya.singhal@gmail.com" class="contact-link">
+        ✉ samanvaya.singhal@gmail.com
+      </a>
+      <a href="tel:+917302294421" class="contact-link">
+        📞 +91 73022 94421
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Samanvaya Singhal &mdash; All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
